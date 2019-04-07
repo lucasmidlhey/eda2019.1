@@ -46,6 +46,7 @@ int main(){
     double p_aprov, p_reprov;
 
   for (int i = 0; i < MAX; i++){
+    printf("Digite a nota nº %d: ", i+1);
     scanf("%lf", &NOTAS[i]);
   }
 
