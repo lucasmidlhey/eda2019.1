@@ -1,12 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #define MAX 10
-/*
-DÚVIDA #1: chamo a função "conta_notas" dentro da função recebe_notas?
-Ou eu devo ter um novo vetor chamado APR na main?
-*/
 
-void recebe_notas(double *APR, int N){
+int recebe_notas(double *APR, int N){
 
     for (int i = 0; i < N; i++){
         if ((*(APR+i)) >= 6.0){
@@ -15,6 +11,8 @@ void recebe_notas(double *APR, int N){
             *(APR+i) = 0;
         }
     }
+
+    return APR;
 }
 
 void conta_notas(double *APR, int N, int *qnt_aprov, int *qnt_repov){
@@ -45,14 +43,13 @@ int main(){
     int qnt_aprov = 0, qnt_reprov = 0, maioria;
     double p_aprov, p_reprov;
 
-  for (int i = 0; i < MAX; i++){
-    printf("Digite a nota nº %d: ", i+1);
-    scanf("%lf", &NOTAS[i]);
-  }
+      for (int i = 0; i < MAX; i++){
+        scanf("%lf", &NOTAS[i]);
+      }
 
-    recebe_notas(NOTAS, MAX);
+    double *APR = recebe_notas(NOTAS, MAX);
 
-    conta_notas(NOTAS, MAX, &qnt_aprov, &qnt_reprov);
+    conta_notas(APR, MAX, &qnt_aprov, &qnt_reprov);
 
     maioria = percent_aprov(qnt_aprov, qnt_reprov, &p_aprov, &p_reprov);
 
